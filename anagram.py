@@ -62,7 +62,7 @@ def letters_from_numbers(numbers):
 # print letters_from_numbers([1, 2, 1])
 # print letters_from_numbers([3, 1, 3])
 
-words =set(nltk.corpus.words.words())
+words = set(nltk.corpus.words.words())
 
 
 def anagram_words(numbers):
@@ -81,25 +81,45 @@ def anagram_words(numbers):
 
 # print [word for word in anagram_words([4, 6, 6])]
 
+# Wrapping around newlines
+# number_sets = [[4, 6, 6],
+#                [7, 7, 8, 3, 4, 1, 2, 1, 5],
+#                [9, 1, 7],
+#                [5, 1, 8, 3, 7],
+#                [9, 3, 6, 1, 4, 3, 2, 1, 6],
+#                [8, 3, 9, 3, 8, 3, 5],
+#                [5, 3, 2, 1, 5],
+#                [4, 3, 6, 1, 6, 1, 6, 1, 9],
+#                [5, 3, 7, 3, 8, 3, 4],
+#                [5, 3, 8, 1, 8, 1, 2, 1, 6, 4, 2],
+#                [5, 5, 7]]
+
+# Breaking at newlines
 number_sets = [[4, 6, 6],
-               [7, 7, 8, 3, 4, 1, 2, 1, 5],
+               [7, 7, 8, 3, 4],
+               [1, 2, 1, 5],
                [9, 1, 7],
                [5, 1, 8, 3, 7],
-               [9, 3, 6, 1, 4, 3, 2, 1, 6],
-               [8, 3, 9, 3, 8, 3, 5],
-               [5, 3, 2, 1, 5],
-               [4, 3, 6, 1, 6, 1, 6, 1, 9],
-               [5, 3, 7, 3, 8, 3, 4],
-               [5, 3, 8, 1, 8, 1, 2, 1, 6, 4, 2],
-               [5, 5, 7]]
+               [9, 3, 6],
+               [1, 4, 3, 2, 1, 6],
+               [8, 3],
+               [9, 3, 8, 3, 5],
+               [5, 3, 2]]
 
-# number_sets = [[4, 6, 6],
-#                [7, 7, 8, 3, 4],
-#                [1, 2, 1, 5]]
 
 # number_sets = [[4, 3, 2, 3, 4, 3, 6, 1, 6],
 #                [1, 6, 4, 5, 2, 3, 5, 8, 3],
 #                [4, 3, 7, 8, 7, 7]]
+
+# Each line wraps onto itself
+# number_sets = [[4, 6, 6, 7, 7, 8, 3, 4],
+#                [1, 2, 1, 5],
+#                [9, 1, 7]]
+
+# Columns
+# number_sets = [[5, 3, 2, 3, 4],
+#                [6, 3, 8],
+#                [8, 1, 9]]
 
 for num_set in number_sets:
     print num_set
