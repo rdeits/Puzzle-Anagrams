@@ -33,9 +33,37 @@ morse_lengths = {'e': 1,
                  'q': 10,
                  'y': 10}
 
+old_morse_lengths_with_spaces = {'a': 4,
+                                 'b': 8,
+                                 'c': 6,
+                                 'd': 6,
+                                 'e': 1,
+                                 'f': 7,
+                                 'g': 7,
+                                 'h': 7,
+                                 'i': 3,
+                                 'j': 9,
+                                 'k': 7,
+                                 'l': 4,
+                                 'm': 5,
+                                 'n': 4,
+                                 'o': 4,
+                                 'p': 9,
+                                 'q': 8,
+                                 'r': 6,
+                                 's': 5,
+                                 't': 2,
+                                 'u': 6,
+                                 'v': 8,
+                                 'w': 7,
+                                 'x': 8,
+                                 'y': 8,
+                                 'z': 8}
+
+code_to_use = old_morse_lengths_with_spaces
 
 def letters_with_length(l):
-    return [key for key in morse_lengths if morse_lengths[key] == l]
+    return [key for key in code_to_use if code_to_use[key] == l]
 # print letters_with_length(3)
 
 
@@ -78,6 +106,25 @@ def anagram_words(numbers):
                     yield p
             tried_sets.append(s)
 
+def caesar_words(numbers):
+    letter_sets = letters_from_numbers(numbers)
+    for s in letter_sets:
+        for x in range(26):
+            potential_word = ''.join([caesar_shift(c, x) for c in s])
+            if potential_word in words:
+                yield x, potential_word
+
+
+def caesar_shift(c, x):
+    """
+    Caesar shift letter c by amount x
+    """
+    if ord(c) > 96:
+        # lowercase
+        return chr(((ord(c) - 97 + x) % 26) + 97)
+    elif ord(c) > 64:
+        # uppercase
+        return chr(((ord(c) - 65 + x) % 26) + 65)
 
 # print [word for word in anagram_words([4, 6, 6])]
 
@@ -94,7 +141,7 @@ def anagram_words(numbers):
 #                [5, 3, 8, 1, 8, 1, 2, 1, 6, 4, 2],
 #                [5, 5, 7]]
 
-# Breaking at newlines
+# Breaking at newlines (incomplete)
 number_sets = [[4, 6, 6],
                [7, 7, 8, 3, 4],
                [1, 2, 1, 5],
@@ -121,7 +168,10 @@ number_sets = [[4, 6, 6],
 #                [6, 3, 8],
 #                [8, 1, 9]]
 
-for num_set in number_sets:
-    print num_set
-    print set(anagram_words(num_set))
-    print "\n"
+if __name__ == "__main__":
+    for num_set in number_sets:
+        print num_set
+        # print set(anagram_words(num_set))
+        # print [''.join(letter_set) for letter_set in letters_from_numbers(num_set)]
+        print list(caesar_words(num_set))
+        print "\n"
