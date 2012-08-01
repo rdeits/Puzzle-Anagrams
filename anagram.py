@@ -114,6 +114,12 @@ def caesar_words(numbers):
             if potential_word in words:
                 yield x, potential_word
 
+def base_words(numbers):
+    letter_sets = letters_from_numbers(numbers)
+    for s in letter_sets:
+        potential_word = ''.join(s)
+        if potential_word in words:
+            yield potential_word
 
 def caesar_shift(c, x):
     """
@@ -154,9 +160,18 @@ number_sets = [[4, 6, 6],
                [5, 3, 2]]
 
 
-# number_sets = [[4, 3, 2, 3, 4, 3, 6, 1, 6],
+# Original pieces
+# number_sets = [
+#                [4, 3, 2, 3, 4, 3, 6, 1, 6],
 #                [1, 6, 4, 5, 2, 3, 5, 8, 3],
-#                [4, 3, 7, 8, 7, 7]]
+#                [4, 3, 7, 8, 7, 7],
+#                [2, 1, 8, 1, 8, 3, 5],
+#                [7, 3, 1, 8, 5, 5, 7],
+#                [1, 5, 1, 2, 1, 6, 6, 4],
+#                [5, 6, 1, 9, 3, 4, 2],
+#                [5, 6, 1, 7, 3, 8],
+#                [1, 9, 1, 5, 3, 8],
+#                [6, 3, 3, 1, 9, 9]]
 
 # Each line wraps onto itself
 # number_sets = [[4, 6, 6, 7, 7, 8, 3, 4],
@@ -171,7 +186,10 @@ number_sets = [[4, 6, 6],
 if __name__ == "__main__":
     for num_set in number_sets:
         print num_set
-        # print set(anagram_words(num_set))
+        print "base:"
+        print list(base_words(num_set))
+        print "anagram:"
+        print set(anagram_words(num_set))
         # print [''.join(letter_set) for letter_set in letters_from_numbers(num_set)]
-        print list(caesar_words(num_set))
+        # print list(caesar_words(num_set))
         print "\n"
